@@ -20,16 +20,19 @@ resource "google_storage_bucket_object" "html_file" {             # Upload the H
   name   = "index.html"                                           # Name it index.html in the bucket
   bucket = google_storage_bucket.website.name                     # Place it in the same website bucket
   source = "${path.module}/Website/index.html"                    # Path to the local index.html file
+  content_type = "text/html" 
 }
 
 resource "google_storage_bucket_object" "css_file" {              # Upload the CSS file to the bucket
   name   = "style.css"                                            # Name it style.css in the bucket
   bucket = google_storage_bucket.website.name                     # Use the same website bucket
   source = "${path.module}/Website/style.css"                     # Path to the local style.css file
+  content_type = "text/css" 
 }
 
 resource "google_storage_bucket_object" "js_file" {               # Upload the JavaScript file to the bucket
   name   = "script.js"                                            # Name it script.js in the bucket
   bucket = google_storage_bucket.website.name                     # Use the same website bucket
   source = "${path.module}/Website/script.js"                     # Path to the local script.js file
+  content_type = "application/javascript"
 }
