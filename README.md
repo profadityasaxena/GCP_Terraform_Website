@@ -81,6 +81,44 @@ If needed, clean large files from history using `git filter-branch` or BFG.
 
 ---
 
+## 🔐 Handling Sensitive Variables
+
+To keep your credentials and environment-specific configurations secure, **do not commit `terraform.tfvars` or any service account key files**.
+
+Instead, follow these best practices:
+
+1. **Reference the key file securely** in your `terraform.tfvars`:
+   ```hcl
+   gcp_svc_key     = "../../API_Keys/terraform-gcp-key.json"
+   gcp_project_id  = "your-gcp-project-id"
+   gcp_region      = "your-gcp-region"
+   ```
+
+2. **Exclude sensitive files** using `.gitignore`:
+   ```gitignore
+   *.tfvars
+   *.tfvars.json
+   API_Keys/
+   terraform-gcp-key.json
+   ```
+
+3. **Provide a safe template** by creating a `terraform.tfvars.example`:
+   ```hcl
+   # terraform.tfvars.example
+   gcp_svc_key     = "path/to/service-account-key.json"
+   gcp_project_id  = "your-gcp-project-id"
+   gcp_region      = "your-gcp-region"
+   ```
+
+4. Instruct contributors to copy the example:
+   ```bash
+   cp terraform.tfvars.example terraform.tfvars
+   ```
+
+Following this approach will help you avoid leaking secrets, improve collaboration, and maintain a secure Terraform setup.
+
+
+---
 ## 👤 Author
 
 Created by **Aditya Saxena**  
