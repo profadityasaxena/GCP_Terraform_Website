@@ -28,3 +28,61 @@ A well-organized Terraform project typically includes the following files:
 
 
 # GCP_Terraform_Website
+
+---
+
+## 🌐 Website Deployment Architecture
+
+Below is the architecture diagram illustrating how Terraform provisions GCP infrastructure for static website hosting:
+
+![Website Architecture](./Architecture%20Diagram.png)
+
+---
+
+## 🛠️ How to Deploy
+
+1. **Install Terraform & Google Cloud SDK**
+2. **Clone this repo**
+3. **Navigate to the `infra/` folder** and initialize Terraform:
+   ```bash
+   terraform init
+   ```
+4. **Apply the infrastructure:**
+   ```bash
+   terraform apply
+   ```
+
+5. Visit your live website:
+   ```
+   https://storage.googleapis.com/<your-bucket-name>/index.html
+   ```
+
+---
+
+## 🔒 Git Best Practices
+
+Your `.gitignore` should include:
+
+```gitignore
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.tfvars.json
+.terraform.lock.hcl
+```
+
+Avoid committing:
+- `.terraform/` plugin binaries
+- `terraform.tfstate` or `*.tfvars` files
+- Large binary provider files
+
+If needed, clean large files from history using `git filter-branch` or BFG.
+
+---
+
+## 👤 Author
+
+Created by **Aditya Saxena**  
+[LinkedIn →](https://www.linkedin.com/in/itsadisxnn/)  
+[GitHub →](https://github.com/profadityasaxena)
